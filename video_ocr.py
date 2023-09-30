@@ -97,6 +97,9 @@ def _get_frames(video_capture, sample_rate):
         if frame_number % (fps // sample_rate) != 0:
             continue
         frame = cv.cvtColor(frame, cv.COLOR_BGR2GRAY)
+        ##########################################################
+        _, frame = cv.threshold(frame, 127, 255, cv.THRESH_BINARY)
+        ##########################################################
         yield Frame(frame_number, frame, frame_number // fps)
 
 
